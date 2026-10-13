@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-teal-deep: #0d3f3d;
+  --color-teal: #12504c;
+  --color-lagoon: #1fc6d6;
+  --color-lagoon-soft: #8fe3ea;
+  --color-plum: #4e385a;
+  --color-plum-deep: #3a2944;
+  --color-sun: #f1e36b;
+  --color-mist: #d3e6f1;
+  --color-sand: #f6f3ee;
+  --color-ink: #1b2b2e;
+
+  --font-sans: "Alexandria", "Poppins", system-ui, sans-serif;
+  --font-en: "Poppins", "Alexandria", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+body {
+  background: var(--color-sand);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+html[lang="en"] body {
+  font-family: var(--font-en);
+}
+
+.kicker {
+  @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-lagoon;
+}
+.kicker::before {
+  content: "";
+  @apply block h-px w-8 bg-current;
+}
+html[lang="ar"] .kicker {
+  letter-spacing: 0;
+  font-size: 0.875rem;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition active:scale-[.98];
+}
+.btn-sun {
+  @apply bg-sun text-plum-deep hover:brightness-95;
+}
+.btn-lagoon {
+  @apply bg-lagoon text-teal-deep hover:brightness-105;
+}
+.btn-ghost {
+  @apply border border-white/40 text-white hover:bg-white/10;
+}
+.btn-wa {
+  @apply bg-[#25D366] text-white hover:brightness-95;
+}
+
+.field {
+  @apply w-full rounded-xl border border-teal/15 bg-white px-4 py-3 text-sm text-ink outline-none transition placeholder:text-ink/40 focus:border-lagoon focus:ring-2 focus:ring-lagoon/30;
+}
+
+.wave-line {
+  background-image: radial-gradient(circle at 50% 120%, transparent 60%, rgba(31, 198, 214, 0.18) 61%, transparent 62%);
+  background-size: 60px 30px;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+.rise-2 { animation-delay: .15s; }
+.rise-3 { animation-delay: .3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; }
+  html { scroll-behavior: auto; }
+}
