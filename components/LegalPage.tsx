@@ -13,7 +13,7 @@ export default function LegalPage({ lang, slug, title, paras }: { lang: Lang; sl
         <div className="mt-8 space-y-5 text-base leading-8 text-ink/80">
           {paras.map((p, i) => <p key={i}>{p}</p>)}
         </div>
-        <Link href={path(lang)} className="btn btn-sun mt-10">{lang === "ar" ? "العودة إلى هافا ريزيدنس" : "Back to Hava Residence"}</Link>
+        <Link href={path(lang)} className="btn btn-plum mt-10">{lang === "ar" ? "العودة إلى هافا ريزيدنس" : "Back to Hava Residence"}</Link>
       </main>
       <Footer lang={lang} />
     </>

@@ -31,7 +31,7 @@ export default function Header({ lang, altHref, home = true }: { lang: Lang; alt
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="primary">
           {d.nav.map((n) => (
-            <a key={n.id} href={`${base}#${n.id}`} className="text-sm text-white/85 transition hover:text-sun">{n.label}</a>
+            <a key={n.id} href={`${base}#${n.id}`} className="text-sm text-white/85 transition hover:text-lagoon">{n.label}</a>
           ))}
         </nav>
 
@@ -40,7 +40,7 @@ export default function Header({ lang, altHref, home = true }: { lang: Lang; alt
             <Globe className="size-4" />
             <span className={lang === "ar" ? "font-[Poppins]" : ""}>{d.ui.switchLang}</span>
           </Link>
-          <a href={telLink} onClick={() => trackConversion("call")} className="btn btn-sun hidden px-4 py-2 sm:inline-flex" dir="ltr">
+          <a href={telLink} onClick={() => trackConversion("call")} className="btn btn-lagoon hidden px-4 py-2 sm:inline-flex" dir="ltr">
             <Phone className="size-4" /> {SITE.phone}
           </a>
           <button onClick={() => setOpen(!open)} className="grid size-10 place-items-center rounded-full text-white lg:hidden" aria-label={d.ui.menu} aria-expanded={open}>

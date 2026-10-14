@@ -7,7 +7,6 @@
   --color-lagoon-soft: #8fe3ea;
   --color-plum: #4e385a;
   --color-plum-deep: #3a2944;
-  --color-sun: #f1e36b;
   --color-mist: #d3e6f1;
   --color-sand: #f6f3ee;
   --color-ink: #1b2b2e;
@@ -44,8 +43,8 @@ html[lang="ar"] .kicker {
 .btn {
   @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition active:scale-[.98];
 }
-.btn-sun {
-  @apply bg-sun text-plum-deep hover:brightness-95;
+.btn-plum {
+  @apply bg-plum text-white hover:bg-plum-deep;
 }
 .btn-lagoon {
   @apply bg-lagoon text-teal-deep hover:brightness-105;

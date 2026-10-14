@@ -1,7 +1,8 @@
 "use client";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Phone, X, MessageCircle } from "lucide-react";
+import { PhoneCall, X } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
 import { dict } from "@/lib/content";
 import { path, telLink, waLink, type Lang } from "@/lib/site";
 import { trackConversion } from "@/lib/track";
@@ -74,23 +75,16 @@ export default function UIProvider({ lang, children }: { lang: Lang; children: R
     <Ctx.Provider value={{ openPrivacy, openLead }}>
       {children}
 
-      {/* Floating buttons (desktop) */}
-      <div className="fixed bottom-6 end-6 z-50 hidden flex-col gap-3 md:flex">
+      {/* Floating call + WhatsApp (all screens) */}
+      <div className="fixed bottom-5 end-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:end-6">
         <a href={waLink(lang)} target="_blank" rel="noopener" onClick={() => trackConversion("whatsapp")} aria-label={d.ui.whatsapp}
-          className="grid size-14 place-items-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/20 transition hover:scale-105">
-          <MessageCircle className="size-7" />
+          className="grid size-13 place-items-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/25 transition hover:scale-105 sm:size-14">
+          <WhatsAppIcon className="size-7" />
         </a>
         <a href={telLink} onClick={() => trackConversion("call")} aria-label={d.ui.call}
-          className="grid size-14 place-items-center rounded-full bg-lagoon text-teal-deep shadow-lg shadow-black/20 transition hover:scale-105">
-          <Phone className="size-6" />
+          className="grid size-13 place-items-center rounded-full bg-plum text-white shadow-lg shadow-black/25 transition hover:scale-105 sm:size-14">
+          <PhoneCall className="size-6" />
         </a>
-      </div>
-
-      {/* Mobile bottom bar */}
-      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 gap-2 border-t border-black/5 bg-white/95 p-2 pb-[max(.5rem,env(safe-area-inset-bottom))] backdrop-blur md:hidden">
-        <a href={telLink} onClick={() => trackConversion("call")} className="btn bg-teal px-2 text-white"><Phone className="size-4" />{d.ui.call}</a>
-        <a href={waLink(lang)} target="_blank" rel="noopener" onClick={() => trackConversion("whatsapp")} className="btn btn-wa px-2"><MessageCircle className="size-4" />{d.ui.whatsapp}</a>
-        <button onClick={openLead} className="btn btn-sun px-2">{d.ui.register}</button>
       </div>
 
       <Modal open={lead} onClose={() => setLead(false)} label={d.popup.title}>
@@ -113,12 +107,12 @@ export default function UIProvider({ lang, children }: { lang: Lang; children: R
       </Modal>
 
       {cookie && (
-        <div className="fixed inset-x-3 bottom-20 z-[60] mx-auto max-w-xl rounded-2xl bg-ink/95 p-4 text-sm text-white shadow-xl md:bottom-6 md:start-6 md:end-auto">
+        <div className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-xl rounded-2xl bg-ink/95 p-4 text-sm text-white shadow-xl md:bottom-6 md:start-6 md:end-auto">
           <p className="mb-3 leading-6">{d.cookie.text}{" "}
             <button onClick={openPrivacy} className="underline">{d.footer.links.privacy}</button>
           </p>
           <div className="flex gap-2">
-            <button onClick={() => decide("1")} className="btn btn-sun px-5 py-2">{d.cookie.accept}</button>
+            <button onClick={() => decide("1")} className="btn btn-lagoon px-5 py-2">{d.cookie.accept}</button>
             <button onClick={() => decide("0")} className="btn btn-ghost px-5 py-2">{d.cookie.decline}</button>
           </div>
         </div>

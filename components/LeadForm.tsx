@@ -91,7 +91,7 @@ export default function LeadForm({
         </select>
       </label>
       {err && <p className="text-sm font-medium text-red-500" role="alert">{err}</p>}
-      <button type="submit" disabled={busy} className="btn btn-sun w-full py-3.5 text-base disabled:opacity-60">
+      <button type="submit" disabled={busy} className="btn btn-plum w-full py-3.5 text-base disabled:opacity-60">
         <Send className="size-4 rtl:-scale-x-100" aria-hidden />
         {busy ? t.sending : t.submit}
       </button>

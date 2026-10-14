@@ -64,8 +64,8 @@ export default function Landing({ lang }: { lang: Lang }) {
 
       {/* ============ HERO ============ */}
       <section className="relative isolate min-h-[100svh] overflow-hidden bg-teal-deep pt-[72px]">
-        <img src="/images/hava-lagoon-night.webp" alt={d.meta.ogAlt} fetchPriority="high"
-          className="absolute inset-0 -z-10 h-full w-full object-cover" width={1768} height={670} />
+        <img src="/images/hava-hero.webp" alt={d.meta.ogAlt} fetchPriority="high"
+          className="absolute inset-0 -z-10 h-full w-full object-cover" width={1778} height={840} />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-teal-deep via-teal-deep/60 to-teal-deep/20" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-l from-transparent via-transparent to-teal-deep/50 rtl:bg-gradient-to-r" />
 
@@ -74,13 +74,13 @@ export default function Landing({ lang }: { lang: Lang }) {
             <p className="rise mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs backdrop-blur">
               <MapPin className="size-3.5 text-lagoon" /> {d.hero.eyebrow}
             </p>
-            <h1 className="rise rise-2 text-4xl font-extrabold leading-[1.15] sm:text-5xl lg:text-6xl">
+            <h1 className="rise rise-2 text-4xl font-bold leading-[1.2] sm:text-5xl lg:text-6xl">
               <span className="block">{d.hero.h1a}</span>
-              <span className="mt-2 block bg-gradient-to-r from-lagoon-soft to-sun bg-clip-text text-transparent">{d.hero.h1b}</span>
+              <span className="mt-2 block text-lagoon">{d.hero.h1b}</span>
             </h1>
             <p className="rise rise-3 mt-6 max-w-xl text-base leading-8 text-white/85 sm:text-lg">{d.hero.sub}</p>
             <div className="rise rise-3 mt-8 flex flex-wrap gap-3">
-              <LeadButton className="btn btn-sun px-7 py-3.5 text-base">{d.ui.register}</LeadButton>
+              <LeadButton className="btn btn-lagoon px-7 py-3.5 text-base">{d.ui.register}</LeadButton>
               <WaButton lang={lang} label={d.ui.whatsapp} className="btn btn-wa px-7 py-3.5 text-base" />
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function Landing({ lang }: { lang: Lang }) {
             {d.hero.stats.map((s, i) => (
               <div key={i} className="border-white/10 px-2 py-5 text-center text-white odd:border-e md:border-e md:last:border-e-0">
                 <dt className="sr-only">{s.l}</dt>
-                <dd className="font-[Poppins] text-2xl font-semibold text-sun sm:text-3xl">{s.v}<span className="ms-1 text-sm font-normal text-white/70">{s.u}</span></dd>
+                <dd className="font-[Poppins] text-2xl font-semibold text-lagoon sm:text-3xl">{s.v}<span className="ms-1 text-sm font-normal text-white/70">{s.u}</span></dd>
                 <dd className="mt-1 text-xs text-white/70">{s.l}</dd>
               </div>
             ))}
@@ -112,7 +112,7 @@ export default function Landing({ lang }: { lang: Lang }) {
             <div className="overflow-hidden rounded-[2rem] bg-[#4a9b9b]">
               <img src="/images/hava-breathe-flower.webp" alt={d.about.imgAlt} width={620} height={490} loading="lazy" className="aspect-[5/4] w-full object-cover" />
             </div>
-            <div className="absolute -bottom-6 start-6 rounded-2xl bg-plum px-6 py-4 text-sun shadow-xl">
+            <div className="absolute -bottom-6 start-6 rounded-2xl bg-plum px-6 py-4 text-lagoon-soft shadow-xl">
               <p className="font-[Poppins] text-lg font-medium italic">{ar ? "Breathe life differently." : "Hava · هواء"}</p>
               <p className="text-sm text-white/80">{d.about.tagline}</p>
             </div>
@@ -154,7 +154,7 @@ export default function Landing({ lang }: { lang: Lang }) {
               <article key={u.key} className={`relative flex flex-col rounded-3xl p-7 shadow-sm ring-1 ${i === 1 ? "bg-teal-deep text-white ring-teal-deep" : "bg-white ring-teal/10"}`}>
                 <h3 className={`text-xl font-bold ${i === 1 ? "text-white" : "text-teal-deep"}`}>{ar ? u.ar : u.en}</h3>
                 <p className={`mt-4 text-xs ${i === 1 ? "text-white/60" : "text-ink/50"}`}>{d.ui.total}</p>
-                <p className={`font-[Poppins] text-3xl font-bold ${i === 1 ? "text-sun" : "text-plum"}`} dir="ltr">
+                <p className={`font-[Poppins] text-3xl font-bold ${i === 1 ? "text-lagoon" : "text-plum"}`} dir="ltr">
                   {fmt(u.total)} <span className="text-base font-medium">{d.ui.egp}</span>
                 </p>
                 <ul className={`mt-6 space-y-3 border-t pt-6 text-sm ${i === 1 ? "border-white/15" : "border-teal/10"}`}>
@@ -163,7 +163,7 @@ export default function Landing({ lang }: { lang: Lang }) {
                   <li className="flex items-center gap-2"><CalendarClock className="size-4 text-lagoon" />{d.ui.years(u.years)}</li>
                 </ul>
                 <div className="mt-auto pt-7">
-                  <LeadButton className={`btn w-full ${i === 1 ? "btn-sun" : "bg-teal text-white hover:bg-teal-deep"}`}>{d.ui.askPrice}</LeadButton>
+                  <LeadButton className={`btn w-full ${i === 1 ? "btn-lagoon" : "btn-plum"}`}>{d.ui.askPrice}</LeadButton>
                 </div>
               </article>
             ))}
@@ -173,13 +173,13 @@ export default function Landing({ lang }: { lang: Lang }) {
           {/* Payment */}
           <div className="mt-14 grid items-center gap-8 rounded-3xl bg-plum p-8 text-white sm:p-10 lg:grid-cols-[1fr_1.4fr]">
             <div>
-              <span className="kicker !text-sun">{d.payment.kicker}</span>
+              <span className="kicker !text-lagoon-soft">{d.payment.kicker}</span>
               <h2 className="mt-3 text-2xl font-bold sm:text-3xl">{d.payment.title}</h2>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {d.payment.items.map((p) => (
                 <div key={p.l} className="rounded-2xl bg-white/10 p-4 text-center">
-                  <p className="font-[Poppins] text-3xl font-bold text-sun sm:text-4xl">{p.v}</p>
+                  <p className="font-[Poppins] text-3xl font-bold text-lagoon-soft sm:text-4xl">{p.v}</p>
                   <p className="mt-1 text-xs text-white/80 sm:text-sm">{p.l}</p>
                 </div>
               ))}
@@ -205,9 +205,9 @@ export default function Landing({ lang }: { lang: Lang }) {
             </div>
           </div>
           <div className="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
-            <img src="/images/hava-lagoon-aerial.webp" alt={d.masterplan.alt1} width={1720} height={650} loading="lazy" className="h-full max-h-[460px] w-full rounded-3xl object-cover" />
+            <img src="/images/hava-lagoon-aerial-2.webp" alt={d.masterplan.alt1} width={665} height={730} loading="lazy" className="h-full max-h-[460px] w-full rounded-3xl object-cover" />
             <div className="flex flex-col gap-4">
-              <img src="/images/hava-buildings-lagoon.webp" alt={d.masterplan.alt2} width={1000} height={850} loading="lazy" className="h-56 w-full rounded-3xl object-cover lg:h-auto lg:flex-1" />
+              <img src="/images/hava-buildings-lagoon.webp" alt={d.gallery.images[0].alt} width={1000} height={850} loading="lazy" className="h-56 w-full rounded-3xl object-cover lg:h-auto lg:flex-1" />
               <div className="rounded-3xl bg-mist p-6">
                 <h3 className="text-lg font-bold text-teal-deep">{d.masterplan.landscape.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-ink/75">{d.masterplan.landscape.body}</p>
@@ -233,7 +233,7 @@ export default function Landing({ lang }: { lang: Lang }) {
             ))}
             <li className="sm:col-span-2">
               <div className="flex flex-wrap gap-3 pt-2">
-                <LeadButton className="btn btn-sun px-7">{d.ui.register}</LeadButton>
+                <LeadButton className="btn btn-plum px-7">{d.ui.register}</LeadButton>
                 <WaButton lang={lang} label={d.ui.whatsapp} />
               </div>
             </li>
@@ -263,8 +263,8 @@ export default function Landing({ lang }: { lang: Lang }) {
           <div className="grid gap-5 md:grid-cols-3">
             {d.vision.cards.map((c, i) => (
               <div key={c.t} className="rounded-3xl border border-white/10 bg-white/5 p-7">
-                <span className="font-[Poppins] text-sm text-sun">0{i + 1}</span>
-                <h3 className="mt-3 text-xl font-semibold text-sun">{c.t}</h3>
+                <span className="font-[Poppins] text-sm text-lagoon">0{i + 1}</span>
+                <h3 className="mt-3 text-xl font-semibold text-lagoon-soft">{c.t}</h3>
                 <p className="mt-3 leading-8 text-white/75">{c.d}</p>
               </div>
             ))}
@@ -343,7 +343,7 @@ export default function Landing({ lang }: { lang: Lang }) {
           <div className="text-white">
             <img src="/brand/hava-logo-white.png" alt="Hava Residence" width={325} height={71} loading="lazy" className="mb-6 h-12 w-auto" />
             <h2 className="text-3xl font-bold leading-tight sm:text-4xl">{d.cta.title}</h2>
-            <p className="mt-4 text-lg text-sun">{d.cta.sub}</p>
+            <p className="mt-4 text-lg text-lagoon">{d.cta.sub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <WaButton lang={lang} label={d.ui.whatsapp} className="btn btn-wa px-7 py-3.5" />
               <CallButton label={d.ui.call} className="btn btn-ghost px-7 py-3.5" />
