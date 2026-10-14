@@ -5,7 +5,6 @@ import { Send } from "lucide-react";
 import { dict, units } from "@/lib/content";
 import { SITE, path, type Lang, type Project } from "@/lib/site";
 import { nuzulUnits } from "@/lib/nuzul";
-import { trackConversion } from "@/lib/track";
 import { useUI } from "./UIProvider";
 
 export default function LeadForm({
@@ -27,7 +26,7 @@ export default function LeadForm({
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
 
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
+  function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     if (fd.get("botcheck")) return;
@@ -37,31 +36,24 @@ export default function LeadForm({
     if (!/^(\+?20)?0?1[0125]\d{8}$/.test(phone) && !/^\+?\d{9,15}$/.test(phone)) return setErr(t.errPhone);
     setErr("");
     setBusy(true);
+
+    const unitVal = String(fd.get("unit") || "");
+    const unitLabel = options.find((o) => o.value === unitVal)?.label || "";
+    const projectLabel = lang === "ar" ? (project === "nuzul" ? "نزل تاور" : "هافا ريزيدنس") : projectName;
+    const msg =
+      lang === "ar"
+        ? `مرحباً، أنا ${name}\nرقم الموبايل: ${phone}\nمهتم بمشروع ${projectLabel}${unitLabel ? `\nنوع الوحدة: ${unitLabel}` : ""}\nبرجاء إرسال الأسعار وخطط السداد.`
+        : `Hello, I'm ${name}\nMobile: ${phone}\nInterested in ${projectLabel}${unitLabel ? `\nUnit type: ${unitLabel}` : ""}\nPlease send me prices and payment plans.`;
+    const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(msg)}`;
+
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: SITE.web3formsKey,
-          subject: `${projectName} Lead (${lang.toUpperCase()}) – ${source}`,
-          from_name: `${projectName} Landing`,
-          project: projectName,
-          name,
-          phone,
-          unit: fd.get("unit"),
-          language: lang,
-          source,
-          page: typeof window !== "undefined" ? window.location.href : "",
-        }),
-      });
-      const data = await res.json();
-      if (!data.success) throw new Error();
-      trackConversion("form");
-      router.push(path(lang, "thank-you"));
-    } catch {
-      setErr(t.errSend);
-      setBusy(false);
-    }
+      sessionStorage.setItem("lead", JSON.stringify({ wa, project, name, phone, unit: unitLabel, source }));
+      sessionStorage.setItem("lead_pending", "1");
+    } catch {}
+
+    // open WhatsApp directly (sync, inside the submit gesture so it isn't blocked)
+    window.open(wa, "_blank", "noopener");
+    router.push(`${path(lang, "thank-you")}?p=${project}`);
   }
 
   const label = dark ? "text-white/80" : "text-ink/70";

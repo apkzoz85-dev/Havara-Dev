@@ -47,6 +47,8 @@ export const units: Unit[] = [
     key: "altocasa",
     ar: "ألتوكاسا Altocasa",
     en: "Altocasa",
+    total: 10_000_000,
+    down: 1_000_000,
   },
 ];
 
@@ -93,6 +95,7 @@ const ar = {
     years: (n: number) => `تقسيط حتى ${n} سنوات`.replace("12 سنوات", "12 سنة"),
     askPrice: "اطلب التفاصيل",
     onRequest: "السعر عند الطلب",
+    planOnRequest: "القسط ومدة التقسيط عند الطلب",
     onRequestSub: "تواصل معنا لمعرفة المساحات والسعر وخطة السداد",
     close: "إغلاق",
     menu: "القائمة",
@@ -267,8 +270,14 @@ const ar = {
     decline: "رفض",
   },
   thanks: {
-    title: "شكرًا لك! تم استلام طلبك",
-    body: "سيتواصل معك أحد مستشارينا العقاريين قريبًا بتفاصيل وأسعار هافا ريزيدنس.",
+    title: "شكرًا لك",
+    body: "تم تحويلك إلى واتساب لإرسال طلبك. اضغط «إرسال» في المحادثة وسيرد عليك مستشار عقاري بالأسعار وخطط السداد.",
+    notOpened: "لو واتساب ما اتفتحش، اضغط هنا:",
+    send: "إرسال الطلب على واتساب",
+    summary: "بيانات طلبك",
+    fields: { name: "الاسم", phone: "الموبايل", project: "المشروع", unit: "نوع الوحدة" },
+    stepsTitle: "الخطوات القادمة",
+    steps: ["أرسل الرسالة الجاهزة على واتساب", "مستشار عقاري يرسل لك الأسعار وخطط السداد", "نحدد معك موعد زيارة أو مكالمة"],
     back: "العودة للصفحة الرئيسية",
   },
 };
@@ -317,6 +326,7 @@ const en: Dict = {
     years: (n: number) => `Installments up to ${n} years`,
     askPrice: "Request Details",
     onRequest: "Price on request",
+    planOnRequest: "Installments & tenor on request",
     onRequestSub: "Contact us for areas, price and payment plan",
     close: "Close",
     menu: "Menu",
@@ -491,8 +501,14 @@ const en: Dict = {
     decline: "Decline",
   },
   thanks: {
-    title: "Thank you! Your request was received",
-    body: "One of our property consultants will contact you shortly with Hava Residence details and prices.",
+    title: "Thank you",
+    body: "You’ve been redirected to WhatsApp to send your request. Tap “Send” in the chat and a property consultant will reply with prices and payment plans.",
+    notOpened: "If WhatsApp didn’t open, tap here:",
+    send: "Send request on WhatsApp",
+    summary: "Your request",
+    fields: { name: "Name", phone: "Mobile", project: "Project", unit: "Unit type" },
+    stepsTitle: "What happens next",
+    steps: ["Send the ready-made message on WhatsApp", "A consultant sends you prices and payment plans", "We schedule a visit or a call with you"],
     back: "Back to home",
   },
 };

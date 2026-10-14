@@ -173,8 +173,14 @@ export default function Landing({ lang }: { lang: Lang }) {
                 </p>
                 <ul className={`mt-6 space-y-3 border-t pt-6 text-sm ${i === 1 ? "border-white/15" : "border-teal/10"}`}>
                   <li className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Percent className="size-4 text-lagoon" />{d.ui.down}</span><b dir="ltr">{fmt(u.down!)} {d.ui.egp}</b></li>
-                  <li className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Wallet className="size-4 text-lagoon" />{d.ui.monthly}</span><b dir="ltr">{fmt(u.monthly!)} {d.ui.egp}</b></li>
-                  <li className="flex items-center gap-2"><CalendarClock className="size-4 text-lagoon" />{d.ui.years(u.years!)}</li>
+                  {u.monthly ? (
+                    <li className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Wallet className="size-4 text-lagoon" />{d.ui.monthly}</span><b dir="ltr">{fmt(u.monthly)} {d.ui.egp}</b></li>
+                  ) : null}
+                  {u.years ? (
+                    <li className="flex items-center gap-2"><CalendarClock className="size-4 text-lagoon" />{d.ui.years(u.years)}</li>
+                  ) : (
+                    <li className="flex items-center gap-2"><CalendarClock className="size-4 text-lagoon" />{d.ui.planOnRequest}</li>
+                  )}
                 </ul>
                 <div className="mt-auto pt-7">
                   <LeadButton className={`btn w-full ${i === 1 ? "btn-lagoon" : "btn-plum"}`}>{d.ui.askPrice}</LeadButton>

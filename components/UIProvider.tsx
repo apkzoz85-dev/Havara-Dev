@@ -41,7 +41,9 @@ function Modal({ open, onClose, children, label, wide = false }: {
 
 export default function UIProvider({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   const d = dict(lang);
-  const project = usePathname()?.includes("/nuzul") ? "nuzul" : "hava";
+  const pathname = usePathname() || "";
+  const project = pathname.includes("/nuzul") ? "nuzul" : "hava";
+  const onThanks = pathname.includes("thank-you");
   const nz = project === "nuzul";
   const popup = nz ? nuzulDict(lang).popup : d.popup;
   const [privacy, setPrivacy] = useState(false);
@@ -54,6 +56,7 @@ export default function UIProvider({ lang, children }: { lang: Lang; children: R
 
   // Popup: 55% scroll OR 16 seconds — once per session
   useEffect(() => {
+    if (window.location.pathname.includes("thank-you")) return;
     let seen = false;
     try { seen = sessionStorage.getItem("hava_popup") === "1"; } catch {}
     if (seen) { shown.current = true; return; }
@@ -82,7 +85,7 @@ export default function UIProvider({ lang, children }: { lang: Lang; children: R
       {children}
 
       {/* Floating call + WhatsApp (all screens) */}
-      <div className="fixed bottom-5 end-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:end-6">
+      {!onThanks && <div className="fixed bottom-5 end-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:end-6">
         <a href={waLink(lang, project)} target="_blank" rel="noopener" onClick={() => trackConversion("whatsapp")} aria-label={d.ui.whatsapp}
           className="grid size-13 place-items-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/25 transition hover:scale-105 sm:size-14">
           <WhatsAppIcon className="size-7" />
@@ -91,7 +94,7 @@ export default function UIProvider({ lang, children }: { lang: Lang; children: R
           className={`grid size-13 place-items-center rounded-full ${nz ? "bg-gold text-char" : "bg-plum text-white"} shadow-lg shadow-black/25 transition hover:scale-105 sm:size-14`}>
           <PhoneCall className="size-6" />
         </a>
-      </div>
+      </div>}
 
       <Modal open={lead} onClose={() => setLead(false)} label={popup.title}>
         <div className={`${nz ? "bg-char" : "bg-teal-deep"} px-6 pb-6 pt-8 text-white`}>

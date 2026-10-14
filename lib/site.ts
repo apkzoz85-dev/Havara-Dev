@@ -5,7 +5,6 @@ export const SITE = {
   phoneIntl: "+201001050018",
   whatsapp: "201001050018",
   developerHotline: "16861",
-  web3formsKey: "9ccc38bd-3017-4286-a082-e3aae869c3fa",
   agencyName: "Grandeur Spaces",
   agencyNameAr: "جراندير سبيسز",
 
