@@ -5,7 +5,17 @@ import type { Lang } from "./site";
    Keywords are placed deliberately (see KEYWORDS.md)
    ========================================================= */
 
-export const units = [
+export type Unit = {
+  key: string;
+  ar: string;
+  en: string;
+  total?: number;
+  down?: number;
+  monthly?: number;
+  years?: number;
+};
+
+export const units: Unit[] = [
   {
     key: "2br",
     ar: "شقة غرفتين نوم",
@@ -32,6 +42,11 @@ export const units = [
     down: 800_000,
     monthly: 50_000,
     years: 12,
+  },
+  {
+    key: "altocasa",
+    ar: "ألتوكاسا Altocasa",
+    en: "Altocasa",
   },
 ];
 
@@ -77,6 +92,8 @@ const ar = {
     total: "إجمالي السعر",
     years: (n: number) => `تقسيط حتى ${n} سنوات`.replace("12 سنوات", "12 سنة"),
     askPrice: "اطلب التفاصيل",
+    onRequest: "السعر عند الطلب",
+    onRequestSub: "تواصل معنا لمعرفة المساحات والسعر وخطة السداد",
     close: "إغلاق",
     menu: "القائمة",
   },
@@ -299,6 +316,8 @@ const en: Dict = {
     total: "Total Price",
     years: (n: number) => `Installments up to ${n} years`,
     askPrice: "Request Details",
+    onRequest: "Price on request",
+    onRequestSub: "Contact us for areas, price and payment plan",
     close: "Close",
     menu: "Menu",
   },

@@ -43,7 +43,7 @@ export default function Landing({ lang }: { lang: Lang }) {
       containsPlace: units.map((u) => ({
         "@type": "Accommodation",
         name: ar ? u.ar : u.en,
-        offers: { "@type": "Offer", price: u.total, priceCurrency: "EGP", availability: "https://schema.org/PreOrder" },
+        ...(u.total ? { offers: { "@type": "Offer", price: u.total, priceCurrency: "EGP", availability: "https://schema.org/PreOrder" } } : {}),
       })),
     },
     {
@@ -152,23 +152,35 @@ export default function Landing({ lang }: { lang: Lang }) {
       <section id="prices" className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <Head kicker={d.prices.kicker} title={d.prices.title} sub={d.prices.sub} center />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {units.map((u, i) => (
+              !u.total ? (
+              <article key={u.key} className="relative flex flex-col rounded-3xl bg-plum p-7 text-white shadow-sm ring-1 ring-plum">
+                <h3 className="text-xl font-bold">{ar ? u.ar : u.en}</h3>
+                <p className="mt-4 text-xs text-white/60">{d.ui.total}</p>
+                <p className="text-2xl font-bold leading-[2.25rem] text-lagoon-soft">{d.ui.onRequest}</p>
+                <p className="mt-6 border-t border-white/15 pt-6 text-sm leading-7 text-white/80">{d.ui.onRequestSub}</p>
+                <div className="mt-auto pt-7">
+                  <LeadButton className="btn btn-lagoon w-full">{d.ui.askPrice}</LeadButton>
+                </div>
+              </article>
+              ) : (
               <article key={u.key} className={`relative flex flex-col rounded-3xl p-7 shadow-sm ring-1 ${i === 1 ? "bg-teal-deep text-white ring-teal-deep" : "bg-white ring-teal/10"}`}>
                 <h3 className={`text-xl font-bold ${i === 1 ? "text-white" : "text-teal-deep"}`}>{ar ? u.ar : u.en}</h3>
                 <p className={`mt-4 text-xs ${i === 1 ? "text-white/60" : "text-ink/50"}`}>{d.ui.total}</p>
                 <p className={`font-[Poppins] text-3xl font-bold ${i === 1 ? "text-lagoon" : "text-plum"}`} dir="ltr">
-                  {fmt(u.total)} <span className="text-base font-medium">{d.ui.egp}</span>
+                  {fmt(u.total!)} <span className="text-base font-medium">{d.ui.egp}</span>
                 </p>
                 <ul className={`mt-6 space-y-3 border-t pt-6 text-sm ${i === 1 ? "border-white/15" : "border-teal/10"}`}>
-                  <li className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Percent className="size-4 text-lagoon" />{d.ui.down}</span><b dir="ltr">{fmt(u.down)} {d.ui.egp}</b></li>
-                  <li className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Wallet className="size-4 text-lagoon" />{d.ui.monthly}</span><b dir="ltr">{fmt(u.monthly)} {d.ui.egp}</b></li>
-                  <li className="flex items-center gap-2"><CalendarClock className="size-4 text-lagoon" />{d.ui.years(u.years)}</li>
+                  <li className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Percent className="size-4 text-lagoon" />{d.ui.down}</span><b dir="ltr">{fmt(u.down!)} {d.ui.egp}</b></li>
+                  <li className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Wallet className="size-4 text-lagoon" />{d.ui.monthly}</span><b dir="ltr">{fmt(u.monthly!)} {d.ui.egp}</b></li>
+                  <li className="flex items-center gap-2"><CalendarClock className="size-4 text-lagoon" />{d.ui.years(u.years!)}</li>
                 </ul>
                 <div className="mt-auto pt-7">
                   <LeadButton className={`btn w-full ${i === 1 ? "btn-lagoon" : "btn-plum"}`}>{d.ui.askPrice}</LeadButton>
                 </div>
               </article>
+              )
             ))}
           </div>
           <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-6 text-ink/50">* {d.prices.note}</p>
