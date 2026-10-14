@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { dict } from "./content";
+import { nuzulDict } from "./nuzul";
 import { SITE, path, type Lang } from "./site";
 
 export function pageMeta(lang: Lang, sub = "", override?: { title?: string; noindex?: boolean }): Metadata {
@@ -26,5 +27,26 @@ export function pageMeta(lang: Lang, sub = "", override?: { title?: string; noin
     twitter: { card: "summary_large_image", title: d.meta.title, description: d.meta.description, images: ["/images/og-hava-residence.jpg"] },
     robots: override?.noindex ? { index: false, follow: false } : { index: true, follow: true },
     icons: { icon: "/favicon.png" },
+  };
+}
+
+export function nuzulMeta(lang: Lang): Metadata {
+  const n = nuzulDict(lang);
+  const url = path(lang, "nuzul");
+  return {
+    ...pageMeta(lang, "nuzul"),
+    title: n.meta.title,
+    description: n.meta.description,
+    keywords: n.meta.keywords,
+    openGraph: {
+      type: "website",
+      url,
+      title: n.meta.title,
+      description: n.meta.description,
+      locale: lang === "ar" ? "ar_EG" : "en_US",
+      siteName: "NUZUL Tower",
+      images: [{ url: "/images/og-nuzul.jpg", width: 1200, height: 630, alt: n.meta.ogAlt }],
+    },
+    twitter: { card: "summary_large_image", title: n.meta.title, description: n.meta.description, images: ["/images/og-nuzul.jpg"] },
   };
 }

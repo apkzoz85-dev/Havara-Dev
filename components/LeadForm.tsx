@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Send } from "lucide-react";
 import { dict, units } from "@/lib/content";
-import { SITE, path, type Lang } from "@/lib/site";
+import { SITE, path, type Lang, type Project } from "@/lib/site";
+import { nuzulUnits } from "@/lib/nuzul";
 import { trackConversion } from "@/lib/track";
 import { useUI } from "./UIProvider";
 
@@ -11,11 +12,15 @@ export default function LeadForm({
   lang,
   source,
   dark = false,
+  project = "hava",
 }: {
   lang: Lang;
   source: string;
   dark?: boolean;
+  project?: Project;
 }) {
+  const options = (project === "nuzul" ? nuzulUnits : units).map((u) => ({ key: u.key, value: u.en, label: lang === "ar" ? u.ar : u.en }));
+  const projectName = project === "nuzul" ? "NUZUL Tower" : "Hava Residence";
   const { openPrivacy } = useUI();
   const t = dict(lang).form;
   const router = useRouter();
@@ -38,8 +43,9 @@ export default function LeadForm({
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: SITE.web3formsKey,
-          subject: `Hava Residence Lead (${lang.toUpperCase()}) – ${source}`,
-          from_name: "Hava Residence Landing",
+          subject: `${projectName} Lead (${lang.toUpperCase()}) – ${source}`,
+          from_name: `${projectName} Landing`,
+          project: projectName,
           name,
           phone,
           unit: fd.get("unit"),
@@ -83,15 +89,15 @@ export default function LeadForm({
         <span className={`mb-1 block text-xs ${label}`}>{t.unit}</span>
         <select name="unit" className="field" defaultValue="">
           <option value="">{t.unitAny}</option>
-          {units.map((u) => (
-            <option key={u.key} value={u.en}>
-              {lang === "ar" ? u.ar : u.en}
+          {options.map((u) => (
+            <option key={u.key} value={u.value}>
+              {u.label}
             </option>
           ))}
         </select>
       </label>
       {err && <p className="text-sm font-medium text-red-500" role="alert">{err}</p>}
-      <button type="submit" disabled={busy} className="btn btn-plum w-full py-3.5 text-base disabled:opacity-60">
+      <button type="submit" disabled={busy} className={`btn ${project === "nuzul" ? "btn-gold" : "btn-plum"} w-full py-3.5 text-base disabled:opacity-60`}>
         <Send className="size-4 rtl:-scale-x-100" aria-hidden />
         {busy ? t.sending : t.submit}
       </button>

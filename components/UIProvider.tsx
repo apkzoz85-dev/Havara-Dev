@@ -1,6 +1,9 @@
 "use client";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { nuzulDict } from "@/lib/nuzul";
+import { ProjectLogo } from "./Brand";
 import { PhoneCall, X } from "lucide-react";
 import WhatsAppIcon from "./WhatsAppIcon";
 import { dict } from "@/lib/content";
@@ -38,6 +41,9 @@ function Modal({ open, onClose, children, label, wide = false }: {
 
 export default function UIProvider({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   const d = dict(lang);
+  const project = usePathname()?.includes("/nuzul") ? "nuzul" : "hava";
+  const nz = project === "nuzul";
+  const popup = nz ? nuzulDict(lang).popup : d.popup;
   const [privacy, setPrivacy] = useState(false);
   const [lead, setLead] = useState(false);
   const [cookie, setCookie] = useState(false);
@@ -77,23 +83,23 @@ export default function UIProvider({ lang, children }: { lang: Lang; children: R
 
       {/* Floating call + WhatsApp (all screens) */}
       <div className="fixed bottom-5 end-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:end-6">
-        <a href={waLink(lang)} target="_blank" rel="noopener" onClick={() => trackConversion("whatsapp")} aria-label={d.ui.whatsapp}
+        <a href={waLink(lang, project)} target="_blank" rel="noopener" onClick={() => trackConversion("whatsapp")} aria-label={d.ui.whatsapp}
           className="grid size-13 place-items-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/25 transition hover:scale-105 sm:size-14">
           <WhatsAppIcon className="size-7" />
         </a>
         <a href={telLink} onClick={() => trackConversion("call")} aria-label={d.ui.call}
-          className="grid size-13 place-items-center rounded-full bg-plum text-white shadow-lg shadow-black/25 transition hover:scale-105 sm:size-14">
+          className={`grid size-13 place-items-center rounded-full ${nz ? "bg-gold text-char" : "bg-plum text-white"} shadow-lg shadow-black/25 transition hover:scale-105 sm:size-14`}>
           <PhoneCall className="size-6" />
         </a>
       </div>
 
-      <Modal open={lead} onClose={() => setLead(false)} label={d.popup.title}>
-        <div className="bg-teal-deep px-6 pb-6 pt-8 text-white">
-          <img src="/brand/hava-logo-white.png" alt="Hava Residence" width={160} height={35} className="mb-4 h-8 w-auto" />
-          <p className="text-xl font-bold">{d.popup.title}</p>
-          <p className="mt-1 text-sm text-white/75">{d.popup.sub}</p>
+      <Modal open={lead} onClose={() => setLead(false)} label={popup.title}>
+        <div className={`${nz ? "bg-char" : "bg-teal-deep"} px-6 pb-6 pt-8 text-white`}>
+          <div className="mb-4"><ProjectLogo project={project} className="h-8 w-auto" /></div>
+          <p className="text-xl font-bold">{popup.title}</p>
+          <p className="mt-1 text-sm text-white/75">{popup.sub}</p>
         </div>
-        <div className="p-6"><LeadForm lang={lang} source="popup" /></div>
+        <div className="p-6"><LeadForm lang={lang} source="popup" project={project} /></div>
       </Modal>
 
       <Modal open={privacy} onClose={() => setPrivacy(false)} label={d.footer.links.privacy} wide>

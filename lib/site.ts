@@ -19,13 +19,21 @@ export const SITE = {
 } as const;
 
 export type Lang = "ar" | "en";
+export type Project = "hava" | "nuzul";
 
-export const waLink = (lang: Lang) =>
-  `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
-    lang === "ar"
-      ? "مرحباً، أريد معرفة تفاصيل وأسعار هافا ريزيدنس – العاصمة الإدارية R8"
-      : "Hello, I'd like details and prices for Hava Residence – New Capital R8"
-  )}`;
+const waText: Record<Project, Record<Lang, string>> = {
+  hava: {
+    ar: "مرحباً، أريد معرفة تفاصيل وأسعار هافا ريزيدنس – العاصمة الإدارية R8",
+    en: "Hello, I'd like details and prices for Hava Residence – New Capital R8",
+  },
+  nuzul: {
+    ar: "مرحباً، أريد معرفة تفاصيل وأسعار نزل تاور – الداون تاون العاصمة الإدارية",
+    en: "Hello, I'd like details and prices for NUZUL Tower – New Capital Downtown",
+  },
+};
+
+export const waLink = (lang: Lang, project: Project = "hava") =>
+  `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(waText[project][lang])}`;
 
 export const telLink = `tel:${SITE.phone}`;
 

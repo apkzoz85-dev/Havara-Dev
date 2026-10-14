@@ -11,7 +11,7 @@ export default function Shell({ lang, children }: { lang: Lang; children: React.
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Cinzel:wght@500;600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,500&display=swap"
         />
         <link rel="preload" as="image" href="/images/hava-lagoon-night.webp" />
         <meta name="theme-color" content="#0d3f3d" />

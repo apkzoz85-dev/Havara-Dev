@@ -1,4 +1,6 @@
-import { ChevronDown, MapPin, Check, Wallet, CalendarClock, Percent } from "lucide-react";
+import Link from "next/link";
+import { ChevronDown, MapPin, Check, Wallet, CalendarClock, Percent, ArrowUpRight } from "lucide-react";
+import { nuzulDict } from "@/lib/nuzul";
 import { dict, units, fmt } from "@/lib/content";
 import { SITE, path, type Lang } from "@/lib/site";
 import Icon from "./Icon";
@@ -19,6 +21,7 @@ function Head({ kicker, title, sub, light = false, center = false }: {
 
 export default function Landing({ lang }: { lang: Lang }) {
   const d = dict(lang);
+  const nz = nuzulDict(lang);
   const ar = lang === "ar";
   const url = SITE.url + path(lang);
 
@@ -315,6 +318,23 @@ export default function Landing({ lang }: { lang: Lang }) {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* ============ NUZUL TEASER ============ */}
+      <section className="pb-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <Link href={path(lang, "nuzul")} className="group grid overflow-hidden rounded-3xl bg-char text-white md:grid-cols-[1.1fr_1fr]">
+            <div className="flex flex-col justify-center p-8 sm:p-10">
+              <span className="kicker !text-gold">{nz.teaser.kicker}</span>
+              <h2 className="mt-3 text-2xl font-bold sm:text-3xl">{nz.teaser.title}</h2>
+              <p className="mt-3 leading-8 text-white/70">{nz.teaser.body}</p>
+              <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-char transition group-hover:brightness-105">
+                {nz.teaser.cta} <ArrowUpRight className="size-4 rtl:-scale-x-100" />
+              </span>
+            </div>
+            <img src="/images/nuzul-tower-dusk.webp" alt={nz.meta.ogAlt} width={1600} height={1085} loading="lazy" className="h-64 w-full object-cover transition duration-700 group-hover:scale-105 md:h-full" />
+          </Link>
         </div>
       </section>
 

@@ -39,3 +39,20 @@
 - Schema: ApartmentComplex (الوحدات والأسعار) + FAQPage + RealEstateAgent
 - sitemap.xml + robots.txt (thank-you = noindex)
 - OG image 1200×630
+
+---
+
+# NUZUL Tower — خريطة الكلمات المفتاحية ( /nuzul · /en/nuzul )
+
+| الكلمة المفتاحية | النوع | مكانها |
+|---|---|---|
+| نزل تاور العاصمة الإدارية / NUZUL Tower New Capital | رئيسية | Title · H1 · Meta · Schema · Alt الهيرو |
+| نزل تاور / NUZUL Tower | براند | H2 (الأسعار، الموقع، الصور، FAQ، CTA) · Alt |
+| مكاتب إدارية للبيع في العاصمة الإدارية / offices for sale New Capital | تجارية | Meta · Sub الأسعار · Hero sub · بطاقة الأسعار |
+| محلات تجارية للبيع في العاصمة الإدارية / retail shops for sale New Capital | تجارية | Sub الأسعار · Alt صورة المحلات · قسم الاستثمار |
+| شقق فندقية للبيع في العاصمة الإدارية / hotel apartments for sale New Capital | تجارية | Sub الأسعار · Alt صورة الغرفة · قسم الاستثمار |
+| الداون تاون العاصمة الإدارية / New Capital Downtown | محلية | H1 (السطر الثاني) · Eyebrow · H2 الموقع · H2 الاستثمار |
+| شريط الأبراج السياحية / Tourist Towers Strip | محلية | H2 عن المشروع · H2 الموقع · FAQ |
+| أسعار نزل تاور / NUZUL Tower prices | تجارية | Kicker + H2 الأسعار · FAQ |
+| مونوريل المحور الشرقي | محلية | الموقع · FAQ · تقسيم الأدوار |
+| قرطبة للتطوير العقاري / Qurtuba Developments | ثانوية | Eyebrow · قسم المطور · FAQ |

@@ -2,7 +2,8 @@
 
 Next.js 16.4 · React 19 · Tailwind 4 · Web3Forms · static build
 
-- `/` عربي (RTL) — `/en` English
+- `/` هافا ريزيدنس عربي (RTL) — `/en` English
+- `/nuzul` نزل تاور عربي — `/en/nuzul` English
 - `/about` `/privacy` `/disclaimer` `/thank-you` (+ نسخ `/en/...`)
 
 ## قبل الرفع — عدّل `lib/site.ts`
