@@ -8,13 +8,8 @@ export const SITE = {
   agencyName: "Grandeur Spaces",
   agencyNameAr: "جراندير سبيسز",
 
-  // Google Ads — replace placeholders with real IDs/labels
-  gtagId: "AW-XXXXXXXXXX",
-  conversions: {
-    form: "AW-XXXXXXXXXX/FORM_LABEL",
-    whatsapp: "AW-XXXXXXXXXX/WA_LABEL",
-    call: "AW-XXXXXXXXXX/CALL_LABEL",
-  },
+  // Google Tag Manager container
+  gtmId: "GTM-5TFJGJNK",
 } as const;
 
 export type Lang = "ar" | "en";
