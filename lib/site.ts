@@ -10,6 +10,8 @@ export const SITE = {
 
   // Google Tag Manager container
   gtmId: "GTM-5TFJGJNK",
+  // Google Ads tag (gtag.js)
+  adsId: "AW-18171758010",
 } as const;
 
 export type Lang = "ar" | "en";

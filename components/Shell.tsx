@@ -8,6 +8,13 @@ export default function Shell({ lang, children }: { lang: Lang; children: React.
   return (
     <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
       <head>
+        {/* Google tag (gtag.js) — Google Ads */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.adsId}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${SITE.adsId}');`,
+          }}
+        />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{

@@ -30,3 +30,6 @@ npm run build
 | `call_click` | ضغطة على أي زرار اتصال |
 
 كل Event معاه متغيرات `project` (hava / nuzul) و `page_language` (ar / en).
+
+## Google Ads tag — `AW-18171758010`
+متركب مباشرة في `<head>` في كل الصفحات (gtag.js). **ما تضيفش Google Tag لنفس الحساب تاني من جوه GTM** عشان ما يبقاش فيه تاجين.
