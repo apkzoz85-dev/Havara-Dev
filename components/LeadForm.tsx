@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Send } from "lucide-react";
+import { PhoneCall } from "lucide-react";
+import WhatsAppIcon from "./WhatsAppIcon";
+import { trackConversion } from "@/lib/track";
 import { dict, units } from "@/lib/content";
-import { SITE, path, type Lang, type Project } from "@/lib/site";
+import { SITE, path, telLink, type Lang, type Project } from "@/lib/site";
 import { nuzulUnits } from "@/lib/nuzul";
 import { useUI } from "./UIProvider";
 
@@ -89,10 +91,16 @@ export default function LeadForm({
         </select>
       </label>
       {err && <p className="text-sm font-medium text-red-500" role="alert">{err}</p>}
-      <button type="submit" disabled={busy} className={`btn ${project === "nuzul" ? "btn-gold" : "btn-plum"} w-full py-3.5 text-base disabled:opacity-60`}>
-        <Send className="size-4 rtl:-scale-x-100" aria-hidden />
-        {busy ? t.sending : t.submit}
-      </button>
+      <div className="grid grid-cols-2 gap-2">
+        <button type="submit" disabled={busy} className="btn btn-wa w-full px-3 py-3.5 text-base disabled:opacity-60">
+          <WhatsAppIcon className="size-5" />
+          {t.viaWhatsapp}
+        </button>
+        <a href={telLink} onClick={() => trackConversion("call")} className={`btn ${project === "nuzul" ? "btn-gold" : "btn-plum"} w-full px-3 py-3.5 text-base`}>
+          <PhoneCall className="size-5" />
+          {t.viaCall}
+        </a>
+      </div>
       <p className={`text-center text-[11px] ${dark ? "text-white/60" : "text-ink/50"}`}>
         {t.consent}{" "}
         <button type="button" onClick={openPrivacy} className="underline underline-offset-2">
