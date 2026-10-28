@@ -8,7 +8,7 @@ import { trackConversion } from "@/lib/track";
 import { ProjectLogo } from "./Brand";
 import WhatsAppIcon from "./WhatsAppIcon";
 
-type Lead = { wa: string; project: Project; name: string; phone: string; unit: string };
+type Lead = { wa?: string; project: Project; name: string; phone: string; unit: string };
 
 export default function ThankYou({ lang }: { lang: Lang }) {
   const d = dict(lang);

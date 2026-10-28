@@ -127,7 +127,7 @@ const ar = {
     privacy: "سياسة الخصوصية",
     errName: "من فضلك اكتب الاسم",
     errPhone: "من فضلك اكتب رقم موبايل صحيح",
-    errSend: "حدث خطأ، حاول مرة أخرى أو تواصل عبر واتساب.",
+    errSend: "حدث خطأ أثناء الإرسال، حاول مرة أخرى أو اتصل بنا.",
   },
   about: {
     kicker: "عن المشروع",
@@ -273,13 +273,13 @@ const ar = {
   },
   thanks: {
     title: "شكرًا لك",
-    body: "تم تحويلك إلى واتساب لإرسال طلبك. اضغط «إرسال» في المحادثة وسيرد عليك مستشار عقاري بالأسعار وخطط السداد.",
-    notOpened: "لو واتساب ما اتفتحش، اضغط هنا:",
-    send: "إرسال الطلب على واتساب",
+    body: "تم استلام طلبك بنجاح، وسيتواصل معك مستشار عقاري في أقرب وقت بالأسعار وخطط السداد.",
+    notOpened: "عايز رد أسرع؟ كلّمنا على واتساب:",
+    send: "تواصل معنا على واتساب",
     summary: "بيانات طلبك",
     fields: { name: "الاسم", phone: "الموبايل", project: "المشروع", unit: "نوع الوحدة" },
     stepsTitle: "الخطوات القادمة",
-    steps: ["أرسل الرسالة الجاهزة على واتساب", "مستشار عقاري يرسل لك الأسعار وخطط السداد", "نحدد معك موعد زيارة أو مكالمة"],
+    steps: ["استلمنا بياناتك", "مستشار عقاري يتواصل معك بالأسعار وخطط السداد", "نحدد معك موعد زيارة أو مكالمة"],
     back: "العودة للصفحة الرئيسية",
   },
 };
@@ -360,7 +360,7 @@ const en: Dict = {
     privacy: "Privacy Policy",
     errName: "Please enter your name",
     errPhone: "Please enter a valid mobile number",
-    errSend: "Something went wrong. Please try again or reach us on WhatsApp.",
+    errSend: "Something went wrong. Please try again or give us a call.",
   },
   about: {
     kicker: "About the Project",
@@ -506,13 +506,13 @@ const en: Dict = {
   },
   thanks: {
     title: "Thank you",
-    body: "You’ve been redirected to WhatsApp to send your request. Tap “Send” in the chat and a property consultant will reply with prices and payment plans.",
-    notOpened: "If WhatsApp didn’t open, tap here:",
-    send: "Send request on WhatsApp",
+    body: "Your request has been received. A property consultant will contact you shortly with prices and payment plans.",
+    notOpened: "Want a faster reply? Chat with us on WhatsApp:",
+    send: "Chat on WhatsApp",
     summary: "Your request",
     fields: { name: "Name", phone: "Mobile", project: "Project", unit: "Unit type" },
     stepsTitle: "What happens next",
-    steps: ["Send the ready-made message on WhatsApp", "A consultant sends you prices and payment plans", "We schedule a visit or a call with you"],
+    steps: ["We’ve received your details", "A consultant contacts you with prices and payment plans", "We schedule a visit or a call with you"],
     back: "Back to home",
   },
 };
