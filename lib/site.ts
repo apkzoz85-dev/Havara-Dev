@@ -14,7 +14,7 @@ export const SITE = {
   adsId: "AW-18171758010",
 
   // Web3Forms — كل ليد من الفورم بيتبعت ميل على الإيميل المربوط بالـ key ده
-  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY", // ← حط الـ Access Key بتاعك هنا
+  web3formsKey: "0a041965-7810-4906-b7ca-5b0306f13edf", // ← حط الـ Access Key بتاعك هنا
 } as const;
 
 export type Lang = "ar" | "en";
