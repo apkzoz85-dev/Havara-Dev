@@ -1,9 +1,9 @@
 // ===== Global site config — edit here only =====
 export const SITE = {
   url: "https://hava-residence.com", // ← غيّرها للدومين الفعلي قبل الرفع
-  phone: "01001050018",
-  phoneIntl: "+201001050018",
-  whatsapp: "201001050018",
+  phone: "01553550052",
+  phoneIntl: "+201553550052",
+  whatsapp: "201553550052",
   developerHotline: "16861",
   agencyName: "Grandeur Spaces",
   agencyNameAr: "جراندير سبيسز",
@@ -12,6 +12,9 @@ export const SITE = {
   gtmId: "GTM-5TFJGJNK",
   // Google Ads tag (gtag.js)
   adsId: "AW-18171758010",
+
+  // Web3Forms — كل ليد من الفورم بيتبعت ميل على الإيميل المربوط بالـ key ده
+  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY", // ← حط الـ Access Key بتاعك هنا
 } as const;
 
 export type Lang = "ar" | "en";

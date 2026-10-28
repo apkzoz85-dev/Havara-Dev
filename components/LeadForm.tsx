@@ -53,6 +53,28 @@ export default function LeadForm({
       sessionStorage.setItem("lead_pending", "1");
     } catch {}
 
+    // send lead email via Web3Forms (keepalive so it survives the redirect)
+    try {
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        keepalive: true,
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: SITE.web3formsKey,
+          subject: `New Lead – ${projectName} – ${name}`,
+          from_name: `${projectName} Landing Page`,
+          name,
+          phone,
+          project: projectName,
+          unit: unitLabel || (lang === "ar" ? "أي نوع" : "Any"),
+          language: lang === "ar" ? "Arabic" : "English",
+          source,
+          page: window.location.href,
+          botcheck: "",
+        }),
+      }).catch(() => {});
+    } catch {}
+
     // open WhatsApp directly (sync, inside the submit gesture so it isn't blocked)
     window.open(wa, "_blank", "noopener");
     router.push(`${path(lang, "thank-you")}?p=${project}`);
